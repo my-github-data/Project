@@ -23,5 +23,15 @@ public class UserServiceImpl implements UserService {
 	public UserDTO addUser(UserDTO dto) {
 		return mapper.map(userRepo.save(mapper.map(dto, User.class)), UserDTO.class);
 	}
+	
+	@Override
+	public UserDTO loginUser(UserDTO dto) {
+        User user = userRepo.findByEmailIdAndPassword(dto.getEmailId(), dto.getPassword());
+        if (user != null) {
+            return mapper.map(user, UserDTO.class);
+        } else {
+            return null;
+        }
+    }
 
 }
