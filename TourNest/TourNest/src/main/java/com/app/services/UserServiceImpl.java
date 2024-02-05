@@ -34,4 +34,16 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+	@Override
+	public UserDTO changePassword(UserDTO dto) {
+		User user=userRepo.findByEmailId(dto.getEmailId());
+		if(user!=null) {
+			user.setPassword(dto.getPassword());
+			return mapper.map(user,  UserDTO.class);
+		}
+		else {
+			return null;			
+		}
+	}
+
 }
