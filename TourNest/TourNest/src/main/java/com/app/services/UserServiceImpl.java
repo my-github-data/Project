@@ -1,7 +1,6 @@
 package com.app.services;
 
 import org.modelmapper.ModelMapper;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,5 +44,35 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 	}
+
+	@Override
+	public UserDTO changePassword(UserDTO dto) {
+		User user=userRepo.findByEmailId(dto.getEmailId());
+		if(user!=null) {
+			user.setPassword(dto.getPassword());
+			return mapper.map(user, UserDTO.class);
+		}
+		else {			
+			return null;
+		}
+	}
+
+	@Override
+	public UserDTO updateUser(Long id, UserDTO dto) {
+	    if (userRepo.existsById(id)) {
+	        User existingUser = userRepo.findById(id).orElse(null);
+
+	        if (existingUser != null) {
+	            existingUser.setName(dto.getName());
+	            existingUser.setEmailId(dto.getEmailId());
+	            existingUser.setPhoneNo(dto.getPhoneNo());
+	            existingUser.setPassword(dto.getPassword());
+	            return mapper.map(userRepo.save(existingUser), UserDTO.class);
+	        }
+	    }
+	    return null;
+	}
+
+	
 
 }
