@@ -14,6 +14,7 @@ import com.app.services.UserService;
 
 @RestController
 @RequestMapping("/user")
+
 public class UserController {
 
 	@Autowired
@@ -28,6 +29,7 @@ public class UserController {
 	public UserDTO loginUser(@RequestBody UserDTO dto) {
 		return userService.loginUser(dto);
 	}
+
 	
 	@PutMapping("/changePassword")
 	public UserDTO changePassword(@RequestBody UserDTO dto) {
@@ -44,5 +46,9 @@ public class UserController {
 		
 	}
 	
+	@PutMapping("/changePassword")
+	public UserDTO changePassword(@RequestBody UserDTO dto) {
+		return userService.changePassword(dto);
+	}
 	
 }
