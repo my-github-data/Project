@@ -26,7 +26,7 @@ public class User extends BaseEntity {
 	private String emailId;
 
 	@Column(name = "phone_no", length = 15, unique = true, nullable = false)
-	private long phoneNo;
+	private String phoneNo;
 
 	@Column(length = 25, unique = true, nullable = false)
 	@NotBlank
