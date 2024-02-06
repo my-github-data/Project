@@ -14,6 +14,7 @@ import com.app.dtos.UserDTO;
 import com.app.services.UserService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/user")
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
@@ -30,9 +31,18 @@ public class UserController {
 	public UserDTO loginUser(@RequestBody UserDTO dto) {
 		return userService.loginUser(dto);
 	}
+	
+	@PostMapping("/changepass")
+
 	@PutMapping("/changePassword")
 	public UserDTO changePassword(@RequestBody UserDTO dto) {
 		return userService.changePassword(dto);
 	}
 	
+
+	@PutMapping("/{id}")
+	public UserDTO updateUser(@PathVariable Long id, @RequestBody UserDTO dto) {
+		return userService.updateUser(id, dto);
+	}
+
 }

@@ -1,6 +1,7 @@
 package com.app.dtos;
 
 import javax.persistence.Column;
+
 import javax.validation.constraints.Email;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
