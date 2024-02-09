@@ -45,6 +45,7 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+<<<<<<< HEAD
 //	@Override
 //	public UserDTO changePassword(UserDTO dto) {
 //		User user=userRepo.findByEmailId(dto.getEmailId());
@@ -73,6 +74,28 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		return null;
+=======
+	@Override
+	public UserDTO changePassword(UserDTO dto) {
+		// TODO Auto-generated method stub
+		User user = userRepo.findByEmailId(dto.getEmailId());
+		if(user!=null) {
+			user.setPassword(dto.getPassword());
+			return mapper.map(user, UserDTO.class);	
+		}
+		else {
+			return null;
+		}		
+	}
+
+	@Override
+	public String deleteUserDetails(Long UserId) {
+		if(userRepo.existsById(UserId)) {
+			userRepo.deleteById(UserId);
+			return "Deleted User details";
+		}
+		return "User not found";
+>>>>>>> mayuri
 	}
 
 }

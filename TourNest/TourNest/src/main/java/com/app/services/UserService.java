@@ -9,4 +9,5 @@ public interface UserService {
 	UserDTO changePassword(UserDTO dto);
 
 	UserDTO updateUser(Long id,UserDTO dto);
+	String deleteUserDetails(Long UserId);
 }
