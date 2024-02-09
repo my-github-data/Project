@@ -14,6 +14,7 @@ import com.app.services.UserService;
 
 @RestController
 @RequestMapping("/user")
+
 public class UserController {
 
 	@Autowired
@@ -29,10 +30,25 @@ public class UserController {
 		return ResponseEntity.ok(userService.loginUser(dto));
 	}
 
+	
 	@PutMapping("/changePassword")
 	public ResponseEntity<?> changePassword(@RequestBody UserDTO dto) {
 		return ResponseEntity.ok(userService.changePassword(dto));
 
 	}
 
+	
+	@DeleteMapping("/{UserId}")
+	public String deleteUserDetails(@PathVariable Long UserId)
+	{
+		System.out.println("in del user details" +UserId);
+		return userService.deleteUserDetails(UserId);
+		
+	}
+	
+	@PutMapping("/changePassword")
+	public UserDTO changePassword(@RequestBody UserDTO dto) {
+		return userService.changePassword(dto);
+	}
+	
 }
