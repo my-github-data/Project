@@ -1,10 +1,12 @@
 package com.app.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,18 +19,17 @@ import lombok.ToString;
 @ToString
 public class User extends BaseEntity {
 	@Column(length = 75, nullable = false, unique = true)
-	@NotBlank
-	private String name;
-
+	private String firstName;
+	@Column(length = 75, nullable = false, unique = true)
+	private String lastName;
 	@Column(name = "email_id", length = 75, unique = true, nullable = false)
-	@Email
-	@NotBlank
 	private String emailId;
-
 	@Column(name = "phone_no", length = 15, unique = true, nullable = false)
 	private String phoneNo;
-
 	@Column(length = 25, unique = true, nullable = false)
-	@NotBlank
 	private String password;
+	@Column(name = "registration_date")
+	private LocalDate registrationDate;
+	@Enumerated(EnumType.STRING)
+	private Role role;
 }

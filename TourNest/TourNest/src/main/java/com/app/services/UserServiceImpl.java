@@ -45,34 +45,34 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	@Override
-	public UserDTO changePassword(UserDTO dto) {
-		User user=userRepo.findByEmailId(dto.getEmailId());
-		if(user!=null) {
-			user.setPassword(dto.getPassword());
-			return mapper.map(user, UserDTO.class);
-		}
-		else {			
-			return null;
-		}
-	}
+//	@Override
+//	public UserDTO changePassword(UserDTO dto) {
+//		User user=userRepo.findByEmailId(dto.getEmailId());
+//		if(user!=null) {
+//			user.setPassword(dto.getPassword());
+//			return mapper.map(user, UserDTO.class);
+//		}
+//		else {			
+//			return null;
+//		}
+//	}
 
 	@Override
 	public UserDTO updateUser(Long id, UserDTO dto) {
-	    if (userRepo.existsById(id)) {
-	        User existingUser = userRepo.findById(id).orElse(null);
+		if (userRepo.existsById(id)) {
+			User existingUser = userRepo.findById(id).orElse(null);
 
-	        if (existingUser != null) {
-	            existingUser.setName(dto.getName());
-	            existingUser.setEmailId(dto.getEmailId());
-	            existingUser.setPhoneNo(dto.getPhoneNo());
-	            existingUser.setPassword(dto.getPassword());
-	            return mapper.map(userRepo.save(existingUser), UserDTO.class);
-	        }
-	    }
-	    return null;
+			if (existingUser != null) {
+				existingUser.setFirstName(dto.getFirstName());
+				existingUser.setLastName(dto.getLastName());
+				existingUser.setEmailId(dto.getEmailId());
+				existingUser.setPhoneNo(dto.getPhoneNo());
+				existingUser.setPassword(dto.getPassword());
+				existingUser.setRole(dto.getRole());
+				return mapper.map(userRepo.save(existingUser), UserDTO.class);
+			}
+		}
+		return null;
 	}
-
-	
 
 }
