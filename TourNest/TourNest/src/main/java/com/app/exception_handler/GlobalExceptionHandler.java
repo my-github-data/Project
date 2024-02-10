@@ -15,12 +15,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dtos.ApiResponse;
 
-@RestControllerAdvice // =@ControllerAdvice => global exc handler class
-//--common interceptor to intercept ALL excs in all contoller + @ResponseBody added impl. 
-//on ret types of all req handling methods 
+@RestControllerAdvice
 public class GlobalExceptionHandler {
-	// method level anno to tell SC , following is an exc handling method : to
-	// handle MethodArgumentNotValidException
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
 		System.out.println("in method arg invalid " + e);
@@ -30,8 +26,6 @@ public class GlobalExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(map);
 	}
 
-	// method level anno to tell SC , following is an exc handling method : to
-	// handle : ResourceNotFoundException
 	@ExceptionHandler(ResourceNotFoundException.class)
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
 	public ApiResponse handleResourceNotFoundException(ResourceNotFoundException e) {
@@ -39,8 +33,6 @@ public class GlobalExceptionHandler {
 		return new ApiResponse(e.getMessage());
 	}
 
-	// method level anno to tell SC , following is an exc handling method : to
-	// handle any other remaining exc => catch all
 	@ExceptionHandler(RuntimeException.class)
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 	public ApiResponse handleAnyException(RuntimeException e) {

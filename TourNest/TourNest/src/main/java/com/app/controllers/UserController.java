@@ -1,11 +1,9 @@
 package com.app.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +31,6 @@ public class UserController {
 		return ResponseEntity.ok(userService.loginUser(dto));
 	}
 
-	
 	@PutMapping("/changePassword")
 	public ResponseEntity<?> changePassword(@RequestBody UserDTO dto) {
 		return ResponseEntity.ok(userService.changePassword(dto));
