@@ -1,13 +1,16 @@
 package com.app.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.app.entities.Booking;
 import com.app.entities.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-	User findByEmailIdAndPassword(String email, String password);
+public interface BookingRepository extends JpaRepository<Booking, Long> {
 
-	User findByEmailId(String email);
+	List<Booking> findAllByUser(User orElseThrow);
+
 }
