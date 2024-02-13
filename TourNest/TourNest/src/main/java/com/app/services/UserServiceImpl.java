@@ -42,4 +42,21 @@ public class UserServiceImpl implements UserService {
 		}
 		throw new ResourceNotFoundException("Invalid Email Or Password");
 	}
+	
+	@Override
+	public UserDTO updateUser(Long id, UserDTO dto) {
+	    if (userRepo.existsById(id)) {
+	        User existingUser = userRepo.findById(id).orElse(null);
+
+	        if (existingUser != null) {
+	            existingUser.setFirstName(dto.getFirstName());
+	            existingUser.setLastName(dto.getLastName());
+	            existingUser.setEmailId(dto.getEmailId());
+	            existingUser.setPhoneNo(dto.getPhoneNo());
+	            existingUser.setPassword(dto.getPassword());
+	            return mapper.map(userRepo.save(existingUser), UserDTO.class);
+	        }
+	    }
+	    return null;
+	}
 }
