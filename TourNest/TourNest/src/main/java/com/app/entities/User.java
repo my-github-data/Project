@@ -10,7 +10,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -19,7 +21,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class User extends BaseEntity {
+
 	@Column(length = 75, nullable = false, unique = true)
 	private String firstName;
 	@Column(length = 75, nullable = false, unique = true)

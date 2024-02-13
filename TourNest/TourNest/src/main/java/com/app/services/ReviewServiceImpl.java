@@ -19,10 +19,11 @@ import com.app.repositories.UserRepository;
 
 @Service
 @Transactional
-public class ReviewServiceImpl implements ReviewService{
+public class ReviewServiceImpl implements ReviewService {
+
 	@Autowired
 	private ReviewRepository revRepo;
-	
+
 	@Autowired
 	private UserRepository userRepo;
 
@@ -47,18 +48,19 @@ public class ReviewServiceImpl implements ReviewService{
 				revRepo.findById(reviewId).orElseThrow(() -> new ResourceNotFoundException("Invalid Review ID")),
 				AddReviewDTO.class);
 	}
-	
+
 	@Override
 	public List<AddReviewDTO> getReviewByUserId(Long id) {
 		return revRepo
 				.findAllByUser(userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid User")))
 				.stream().map(review -> mapper.map(review, AddReviewDTO.class)).collect(Collectors.toList());
 	}
-	
+
 	@Override
 	public List<AddReviewDTO> getReviewByPackageId(Long id) {
 		return revRepo
-				.findAllByPakage(packRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid Package")))
+				.findAllByPakage(
+						packRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid Package")))
 				.stream().map(review -> mapper.map(review, AddReviewDTO.class)).collect(Collectors.toList());
 	}
 
@@ -70,8 +72,7 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public AddReviewDTO updateReview(Long id, String review, int rating) {
-		Review rev = revRepo.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Invalid Id Provided"));
+		Review rev = revRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid Id Provided"));
 		rev.setRating(rating);
 		rev.setReview(review);
 		return mapper.map(review, AddReviewDTO.class);
@@ -79,13 +80,8 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public ApiResponse deleteReview(Long id) {
-		revRepo
-				.delete(revRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Error Occured...")));
+		revRepo.delete(revRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Error Occured...")));
 		return new ApiResponse("Review Deleted Successfully!");
 	}
-
-	
-
-	
 
 }

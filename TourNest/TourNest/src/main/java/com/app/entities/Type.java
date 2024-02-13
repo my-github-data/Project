@@ -1,5 +1,5 @@
 package com.app.entities;
 
 public enum Type {
-	Maharashtra, National, International
+	MAHARASHTRA, NATIONAL, INTERNATIONAL
 }

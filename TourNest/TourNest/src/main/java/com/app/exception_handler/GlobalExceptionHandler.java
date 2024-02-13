@@ -17,6 +17,7 @@ import com.app.dtos.ApiResponse;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
 		System.out.println("in method arg invalid " + e);

@@ -22,6 +22,7 @@ import com.app.repositories.PackageRepository;
 @Service
 @Transactional
 public class ImageServiceImpl implements ImageService {
+
 	@Autowired
 	private ImageRepository imageRepo;
 

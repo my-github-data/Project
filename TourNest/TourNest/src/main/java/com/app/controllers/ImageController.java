@@ -22,6 +22,7 @@ import com.app.services.ImageService;
 @RestController
 @RequestMapping("/image")
 public class ImageController {
+
 	@Autowired
 	private ImageService imageService;
 

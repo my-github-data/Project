@@ -17,13 +17,14 @@ import com.app.repositories.UserRepository;
 
 @Service
 @Transactional
-public class FeedbackServiceImpl implements FeedbackService{
+public class FeedbackServiceImpl implements FeedbackService {
+
 	@Autowired
 	private FeedbackRepository feedRepo;
-	
+
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Autowired
 	private ModelMapper mapper;
 
@@ -34,6 +35,7 @@ public class FeedbackServiceImpl implements FeedbackService{
 		System.out.println(feedback.toString());
 		return mapper.map(feedRepo.save(feedback), AddFeedbackDTO.class);
 	}
+
 	@Override
 	public AddFeedbackDTO getFeedback(Long feedbackId) {
 		return mapper.map(

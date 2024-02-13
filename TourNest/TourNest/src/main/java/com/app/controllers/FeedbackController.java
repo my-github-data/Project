@@ -16,25 +16,26 @@ import com.app.services.FeedbackService;
 @RestController
 @RequestMapping("/feedback")
 public class FeedbackController {
+
 	@Autowired
 	private FeedbackService feedService;
-	
+
 	@PostMapping("/add")
 	public ResponseEntity<?> addReview(@RequestBody AddFeedbackDTO dto) {
 		System.out.println(dto.toString());
 		return ResponseEntity.status(HttpStatus.CREATED).body(feedService.addFeedback(dto));
 	}
-	
+
 	@GetMapping("/get/{feedbackId}")
 	public ResponseEntity<?> getFeedback(@PathVariable Long feedbackId) {
 		return ResponseEntity.ok(feedService.getFeedback(feedbackId));
 	}
-	
+
 	@GetMapping("/fetch/{userId}")
 	public ResponseEntity<?> getFeedbackByUserId(@PathVariable Long userId) {
 		return ResponseEntity.ok(feedService.getFeedbackByUserId(userId));
 	}
-	
+
 	@GetMapping("/all")
 	public ResponseEntity<?> getAllFeedbacks() {
 		return ResponseEntity.ok(feedService.getAllFeedbacks());

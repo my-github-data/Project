@@ -8,16 +8,21 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "packages")
 public class Package extends BaseEntity {
+
 	@Column(length = 75, nullable = false, unique = true)
 	private String name;
 	@Enumerated(EnumType.STRING)

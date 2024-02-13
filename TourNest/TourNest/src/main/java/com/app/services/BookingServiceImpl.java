@@ -21,6 +21,7 @@ import com.app.repositories.UserRepository;
 @Service
 @Transactional
 public class BookingServiceImpl implements BookingService {
+
 	@Autowired
 	private BookingRepository bookingRepo;
 

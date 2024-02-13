@@ -19,6 +19,7 @@ import com.app.services.BookingService;
 @RestController
 @RequestMapping("/booking")
 public class BookingController {
+
 	@Autowired
 	private BookingService bookingService;
 

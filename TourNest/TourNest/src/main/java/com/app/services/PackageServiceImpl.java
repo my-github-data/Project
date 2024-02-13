@@ -14,6 +14,7 @@ import com.app.repositories.PackageRepository;
 @Service
 @Transactional
 public class PackageServiceImpl implements PackageService {
+
 	@Autowired
 	private PackageRepository packRepo;
 

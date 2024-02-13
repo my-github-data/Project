@@ -7,16 +7,21 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "addresses")
 public class Address extends BaseEntity {
+
 	@Column(length = 20)
 	private String city;
 	@Column(length = 20)
