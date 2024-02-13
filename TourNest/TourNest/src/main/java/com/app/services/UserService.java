@@ -9,4 +9,6 @@ public interface UserService {
 	UserDTO loginUser(UserDTO dto);
 
 	UserDTO changePassword(UserDTO dto);
+	
+	UserDTO updateUser(Long id,UserDTO dto);
 }
