@@ -31,7 +31,8 @@ public class FeedbackServiceImpl implements FeedbackService {
 	@Override
 	public AddFeedbackDTO addFeedback(AddFeedbackDTO dto) {
 		Feedback feedback = mapper.map(dto, Feedback.class);
-		feedback.setUser(userRepo.findById(dto.getUserId()).orElseThrow());
+		feedback.setUser(
+				userRepo.findById(dto.getUserId()).orElseThrow(() -> new ResourceNotFoundException("Invalid User!")));
 		System.out.println(feedback.toString());
 		return mapper.map(feedRepo.save(feedback), AddFeedbackDTO.class);
 	}

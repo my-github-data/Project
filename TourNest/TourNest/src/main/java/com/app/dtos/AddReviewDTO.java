@@ -1,6 +1,7 @@
 package com.app.dtos;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -20,15 +21,15 @@ public class AddReviewDTO {
 
 	@JsonProperty(access = Access.READ_ONLY)
 	private Long id;
-	@NotBlank
+	@NotBlank(message = "User Can Not be Null")
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private Long userId;
-	@NotBlank
+	@NotBlank(message = "Package Can Not be Null")
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private Long packageId;
-	@NotBlank
+	@NotBlank(message = "Please Add Review")
 	private String review;
-	@NotBlank
+	@NotNull(message = "Rating is Mendatory")
 	private int rating;
 
 }

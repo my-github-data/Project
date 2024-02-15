@@ -1,8 +1,12 @@
 package com.app.controllers;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,28 +21,30 @@ import com.app.services.PackageService;
 
 @RestController
 @RequestMapping("/package")
+@Validated
 public class PackageController {
 
 	@Autowired
 	private PackageService packService;
 
 	@PostMapping("/add")
-	public ResponseEntity<?> addPackage(@RequestBody PackageDTO dto) {
+	public ResponseEntity<?> addPackage(@RequestBody @Valid PackageDTO dto) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(packService.addPackage(dto));
 	}
 
 	@PutMapping("/updatePackage/{id}")
-	public ResponseEntity<?> updatePackage(@PathVariable Long id, @RequestBody PackageDTO dto) {
+	public ResponseEntity<?> updatePackage(@PathVariable @NotNull(message = "Provide Package To Update") Long id,
+			@RequestBody @Valid PackageDTO dto) {
 		return ResponseEntity.ok(packService.updatePackage(id, dto));
 	}
 
 	@DeleteMapping("/deletePackage/{id}")
-	public ResponseEntity<?> deletePackage(@PathVariable Long id) {
+	public ResponseEntity<?> deletePackage(@PathVariable @NotNull(message = "Provide Package To Update") Long id) {
 		return ResponseEntity.ok(packService.deletePackage(id));
 	}
 
 	@GetMapping("/viewPackage/{id}")
-	public ResponseEntity<?> viewPackage(@PathVariable Long id) {
+	public ResponseEntity<?> viewPackage(@PathVariable @NotNull(message = "Provide Package To Update") Long id) {
 		return ResponseEntity.ok(packService.viewPackage(id));
 	}
 }

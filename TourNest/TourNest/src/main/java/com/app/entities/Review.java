@@ -23,7 +23,7 @@ public class Review extends BaseEntity {
 
 	@Column(length = 150, nullable = false)
 	private String review;
-	@Column(nullable = false)
+	@Column(length = 7, nullable = false)
 	private int rating;
 
 	@ManyToOne

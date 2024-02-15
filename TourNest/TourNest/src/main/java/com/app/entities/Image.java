@@ -21,7 +21,7 @@ import lombok.ToString;
 @Table(name = "images")
 public class Image extends BaseEntity {
 
-	@Column(length = 100)
+	@Column(length = 50)
 	private String path;
 
 	@ManyToOne

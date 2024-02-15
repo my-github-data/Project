@@ -3,16 +3,14 @@ package com.app.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.validation.constraints.NotBlank;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_exceptions.ResourceNotFoundException;
-import com.app.dtos.AdminDTO;
 import com.app.dtos.ApiResponse;
+import com.app.dtos.UpdateUserDTO;
 import com.app.entities.Role;
 import com.app.entities.User;
 import com.app.repositories.AdminRepository;
@@ -28,17 +26,17 @@ public class AdminServiceImpl implements AdminService {
 	private ModelMapper mapper;
 
 	@Override
-	public List<AdminDTO> getAllUsersByRole(Role role) {
+	public List<UpdateUserDTO> getAllUsersByRole(Role role) {
 //		List<User> lt = adminRepo.findAllByRole(role);
 //		List<UserDTO> ltDTO = lt.stream().map(user -> mapper.map(user, UserDTO.class)).collect(Collectors.toList());
 //		System.out.println(ltDTO);
 //		return null;
-		return adminRepo.findAllByRole(role).stream().map(user -> mapper.map(user, AdminDTO.class))
+		return adminRepo.findAllByRole(role).stream().map(user -> mapper.map(user, UpdateUserDTO.class))
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public ApiResponse blockClient(@NotBlank Long id) {
+	public ApiResponse blockClient(Long id) {
 		User user = adminRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid User Id"));
 		user.setRole(null);
 		adminRepo.save(user);

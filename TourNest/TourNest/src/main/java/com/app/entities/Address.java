@@ -23,6 +23,8 @@ import lombok.ToString;
 public class Address extends BaseEntity {
 
 	@Column(length = 20)
+	private String landmark;
+	@Column(length = 20)
 	private String city;
 	@Column(length = 20)
 	private String state;

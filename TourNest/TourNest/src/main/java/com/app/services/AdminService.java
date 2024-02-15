@@ -2,15 +2,13 @@ package com.app.services;
 
 import java.util.List;
 
-import javax.validation.constraints.NotBlank;
-
-import com.app.dtos.AdminDTO;
 import com.app.dtos.ApiResponse;
+import com.app.dtos.UpdateUserDTO;
 import com.app.entities.Role;
 
 public interface AdminService {
 
-	List<AdminDTO> getAllUsersByRole(Role role);
+	List<UpdateUserDTO> getAllUsersByRole(Role role);
 
-	ApiResponse blockClient(@NotBlank Long id);
+	ApiResponse blockClient(Long id);
 }

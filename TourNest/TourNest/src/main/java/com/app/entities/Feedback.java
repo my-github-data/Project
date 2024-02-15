@@ -21,7 +21,7 @@ import lombok.ToString;
 @Table(name = "feedbacks")
 public class Feedback extends BaseEntity {
 
-	@Column(length = 150, nullable = false)
+	@Column(length = 250, nullable = false)
 	private String feedback;
 
 	@ManyToOne

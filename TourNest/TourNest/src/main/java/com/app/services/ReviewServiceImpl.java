@@ -36,8 +36,10 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public AddReviewDTO addReview(AddReviewDTO dto) {
 		Review review = mapper.map(dto, Review.class);
-		review.setUser(userRepo.findById(dto.getUserId()).orElseThrow());
-		review.setPakage(packRepo.findById(dto.getPackageId()).orElseThrow());
+		review.setUser(
+				userRepo.findById(dto.getUserId()).orElseThrow(() -> new ResourceNotFoundException("User Not Found")));
+		review.setPakage(packRepo.findById(dto.getPackageId())
+				.orElseThrow(() -> new ResourceNotFoundException("Package Not Found")));
 		System.out.println(review.toString());
 		return mapper.map(revRepo.save(review), AddReviewDTO.class);
 	}

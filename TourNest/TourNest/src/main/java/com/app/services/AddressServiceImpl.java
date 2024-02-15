@@ -34,19 +34,20 @@ public class AddressServiceImpl implements AddressService {
 	@Override
 	public AddressDTO updateAddress(Long id, AddressDTO dto) {
 		Address address = addressRepo
-				.findByUser(userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid User!")));
+				.findByUser(userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid User!")))
+				.orElseThrow(() -> new ResourceNotFoundException("Address Not Found."));
 		address.setCity(dto.getCity());
 		address.setCountry(dto.getCountry());
 		address.setState(dto.getState());
 		address.setZipCode(dto.getZipCode());
+		address.setLandmark(dto.getLandmark());
 		return mapper.map(addressRepo.save(address), AddressDTO.class);
 	}
 
 	@Override
 	public AddressDTO getAddress(Long id) {
-		return mapper.map(
-				addressRepo.findByUser(
-						userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid User!"))),
-				AddressDTO.class);
+		return mapper.map(addressRepo
+				.findByUser(userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid User!")))
+				.orElseThrow(() -> new ResourceNotFoundException("Address Not Found.")), AddressDTO.class);
 	}
 }

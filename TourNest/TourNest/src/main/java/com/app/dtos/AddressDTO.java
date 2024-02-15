@@ -1,6 +1,7 @@
 package com.app.dtos;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -20,12 +21,13 @@ public class AddressDTO {
 
 	@JsonProperty(access = Access.READ_ONLY)
 	private Long id;
-	@NotBlank
+	private String landmark;
+	@NotBlank(message = "City Can Not be Null")
 	private String city;
-	@NotBlank
+	@NotBlank(message = "State Can Not be Null")
 	private String state;
-	@NotBlank
+	@NotBlank(message = "Country Can Not be Null")
 	private String country;
-	@NotBlank
+	@NotNull(message = "Enter Valid Zip-Code")
 	private String zipCode;
 }

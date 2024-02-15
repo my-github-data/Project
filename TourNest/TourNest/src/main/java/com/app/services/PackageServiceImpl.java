@@ -1,12 +1,14 @@
 package com.app.services;
 
-import java.util.Optional;
+import java.time.LocalDate;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.custom_exceptions.ResourceNotFoundException;
+import com.app.dtos.ApiResponse;
 import com.app.dtos.PackageDTO;
 import com.app.entities.Package;
 import com.app.repositories.PackageRepository;
@@ -23,7 +25,9 @@ public class PackageServiceImpl implements PackageService {
 
 	@Override
 	public PackageDTO addPackage(PackageDTO dto) {
-		return mapper.map(packRepo.save(mapper.map(dto, Package.class)), PackageDTO.class);
+		Package package1 = mapper.map(dto, Package.class);
+		package1.setLaunchDate(LocalDate.now());
+		return mapper.map(packRepo.save(package1), PackageDTO.class);
 	}
 
 	@Override
@@ -41,18 +45,17 @@ public class PackageServiceImpl implements PackageService {
 				return mapper.map(packRepo.save(existingPack), PackageDTO.class);
 			}
 		}
-		return null;
+		throw new ResourceNotFoundException("Package Not Found!");
 	}
 
 	@Override
-	public PackageDTO deletePackage(Long id) {
+	public ApiResponse deletePackage(Long id) {
 		if (packRepo.existsById(id)) {
-			Optional<Package> packageOptional = packRepo.findById(id);
-			Package deletedPackage = packageOptional.get();
+//			Package package1 = packRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Invalid Package"));
 			packRepo.deleteById(id);
-			return mapper.map(deletedPackage, PackageDTO.class);
+			return new ApiResponse("Package Deleted Successfully!");
 		}
-		return null;
+		throw new ResourceNotFoundException("Package Not Found!");
 	}
 
 	@Override
@@ -61,6 +64,6 @@ public class PackageServiceImpl implements PackageService {
 			Package pack = packRepo.findById(id).orElse(null);
 			return mapper.map(pack, PackageDTO.class);
 		}
-		return null;
+		throw new ResourceNotFoundException("Package Not Found!");
 	}
 }

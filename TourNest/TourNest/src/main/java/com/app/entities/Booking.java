@@ -23,7 +23,7 @@ import lombok.ToString;
 @Table(name = "bookings")
 public class Booking extends BaseEntity {
 
-	@Column(name = "tickets")
+	@Column(name = "tickets", length = 5)
 	private int noOfTickets;
 	@Column(name = "booking_date")
 	private LocalDate bookingDate;

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.custom_exceptions.ApiException;
 import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dtos.AddBookingDTO;
 import com.app.dtos.ApiResponse;
@@ -65,10 +66,14 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public AddBookingDTO addBooking(AddBookingDTO dto) {
+		if (dto.getNoOfTickets() <= 0)
+			throw new ApiException("Enter No. of Tickets Greater than 0");
 		Booking booking = mapper.map(dto, Booking.class);
 		booking.setBookingDate(LocalDate.now());
-		booking.setUser(userRepo.findById(dto.getUserId()).orElseThrow());
-		booking.setPakage(packageRepo.findById(dto.getPackageId()).orElseThrow());
+		booking.setUser(
+				userRepo.findById(dto.getUserId()).orElseThrow(() -> new ResourceNotFoundException("User Not Found")));
+		booking.setPakage(packageRepo.findById(dto.getPackageId())
+				.orElseThrow(() -> new ResourceNotFoundException("Package Not Found")));
 		System.out.println(booking.toString());
 		return mapper.map(bookingRepo.save(booking), AddBookingDTO.class);
 	}

@@ -23,9 +23,10 @@ import lombok.ToString;
 @Table(name = "packages")
 public class Package extends BaseEntity {
 
-	@Column(length = 75, nullable = false, unique = true)
+	@Column(length = 30, nullable = false, unique = true)
 	private String name;
 	@Enumerated(EnumType.STRING)
+	@Column(length = 15, nullable = false)
 	private Type type;
 	@Column(nullable = false)
 	private Integer price;
@@ -35,5 +36,7 @@ public class Package extends BaseEntity {
 	private LocalDate fromDate;
 	@Column(name = "to_date")
 	private LocalDate toDate;
+	@Column(name = "launch_date")
+	private LocalDate launchDate;
 
 }

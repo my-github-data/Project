@@ -1,6 +1,8 @@
 package com.app.dtos;
 
-import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
+
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -20,14 +22,16 @@ public class AddBookingDTO {
 
 	@JsonProperty(access = Access.READ_ONLY)
 	private Long id;
-	@NotBlank
 	@JsonProperty(access = Access.WRITE_ONLY)
+	@NotNull(message = "User Must Be Provided")
 	private Long userId;
-	@NotBlank
 	@JsonProperty(access = Access.WRITE_ONLY)
+	@NotNull(message = "Please Select Package")
 	private Long packageId;
-	@NotBlank
+	@JsonProperty(access = Access.READ_ONLY)
+	private LocalDate bookingDate;
+	@NotNull(message = "Provide Valid Number")
 	private int noOfTickets;
-	@NotBlank
+	@JsonProperty(access = Access.READ_ONLY)
 	private boolean paymentStatus;
 }

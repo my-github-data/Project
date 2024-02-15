@@ -11,6 +11,6 @@ import com.app.entities.User;
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
-	List<Booking> findAllByUser(User orElseThrow);
+	List<Booking> findAllByUser(User user);
 
 }

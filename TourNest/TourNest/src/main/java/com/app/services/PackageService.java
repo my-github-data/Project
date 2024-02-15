@@ -1,5 +1,6 @@
 package com.app.services;
 
+import com.app.dtos.ApiResponse;
 import com.app.dtos.PackageDTO;
 
 public interface PackageService {
@@ -8,7 +9,7 @@ public interface PackageService {
 
 	PackageDTO updatePackage(Long id, PackageDTO dto);
 
-	PackageDTO deletePackage(Long id);
+	ApiResponse deletePackage(Long id);
 
 	PackageDTO viewPackage(Long id);
 }

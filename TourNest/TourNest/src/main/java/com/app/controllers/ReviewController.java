@@ -1,9 +1,13 @@
 package com.app.controllers;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,29 +22,30 @@ import com.app.services.ReviewService;
 
 @RestController
 @RequestMapping("/review")
+@Validated
 public class ReviewController {
 
 	@Autowired
 	private ReviewService revService;
 
 	@PostMapping("/add")
-	public ResponseEntity<?> addReview(@RequestBody AddReviewDTO dto) {
+	public ResponseEntity<?> addReview(@RequestBody @Valid AddReviewDTO dto) {
 		System.out.println(dto.toString());
 		return ResponseEntity.status(HttpStatus.CREATED).body(revService.addReview(dto));
 	}
 
 	@GetMapping("/get/{reviewId}")
-	public ResponseEntity<?> getReview(@PathVariable Long reviewId) {
+	public ResponseEntity<?> getReview(@PathVariable @NotNull Long reviewId) {
 		return ResponseEntity.ok(revService.getReview(reviewId));
 	}
 
 	@GetMapping("/fetch/{userId}")
-	public ResponseEntity<?> getReviewByUserId(@PathVariable Long userId) {
+	public ResponseEntity<?> getReviewByUserId(@PathVariable @NotNull Long userId) {
 		return ResponseEntity.ok(revService.getReviewByUserId(userId));
 	}
 
 	@GetMapping("/show/{packageId}")
-	public ResponseEntity<?> getReviewByPackageId(@PathVariable Long packageId) {
+	public ResponseEntity<?> getReviewByPackageId(@PathVariable @NotNull Long packageId) {
 		return ResponseEntity.ok(revService.getReviewByPackageId(packageId));
 	}
 
@@ -50,12 +55,12 @@ public class ReviewController {
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> updateReview(@PathVariable Long id, @RequestBody AddReviewDTO update) {
+	public ResponseEntity<?> updateReview(@PathVariable @NotNull Long id, @RequestBody @Valid AddReviewDTO update) {
 		return ResponseEntity.ok(revService.updateReview(id, update.getReview(), update.getRating()));
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<?> deleteReview(@PathVariable Long id) {
+	public ResponseEntity<?> deleteReview(@PathVariable @NotNull Long id) {
 		return ResponseEntity.ok(revService.deleteReview(id));
 	}
 }
