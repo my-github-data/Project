@@ -42,6 +42,7 @@ function HomeBody() {
                         </div>
                     </div>
                 </div>
+                <a class="more" href="/packages"><h6>Click for more....</h6></a>
             </div>
             <div class="bar"><p class='must'>Places we can take you to</p></div>
             <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -72,6 +73,7 @@ function HomeBody() {
                         </div>
                     </div>
                 </div>
+                <a class="more" href="/packages"><h6>Click for more....</h6></a>
             </div>
             <div class="bar"><p class='must'>Where you can get unique experiences</p></div>
             <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -102,6 +104,7 @@ function HomeBody() {
                         </div>
                     </div>
                 </div>
+                <a class="more" href="/packages"><h6>Click for more....</h6></a>
             </div>
             <br />
         </>

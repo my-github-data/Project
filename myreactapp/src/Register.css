@@ -4,24 +4,24 @@
     padding: 0;
     box-sizing: border-box;
 }
-.outcontainer{
-  background: url("./images/loginbg.jpg") 
+.outcontainer1{
+  background: url("./images/registerbg.jpg") 
   no-repeat center fixed;
   background-size: cover;
   font-family: "Merriweather", serif;
   font-weight: 500;
   font-style: italic;
 }
-.container{
-    height: 100vh;
-    width: 100vw;
+.container1{
+    height: 800px;
+    width: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .form{
     font-family: 'Playfair Display', serif;
-    font-size:  1.2rem;
+    font-size:  1.5rem;
     position: relative;
     width: 100%;
     max-width: 380px;
@@ -43,7 +43,7 @@
     border-radius: 10px;
     pointer-events: none;
 }
-.form h2{
+.form h1{
     text-align: center;
     margin: 20px;
 }
@@ -54,7 +54,7 @@
 
 .box1 input{
     font-family: 'Playfair Display', serif;
-    font-size: 1.0rem;
+    font-size: 1.2rem;
     width: 100%;
     padding: 10px 0;
     margin-bottom: 30px;
@@ -74,7 +74,7 @@
  .btn{
     width: 150px;
     padding: 10px;
-    margin: 14px;
+    margin: 15px;
     font-family: 'Playfair Display', serif;
     background-color: rgb(31, 27, 27);
     color: white;
