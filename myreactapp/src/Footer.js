@@ -7,15 +7,15 @@ import { FaTwitter, FaInstagram, FaFacebook } from "react-icons/fa";
 export function Footer() {
     return (
         <>
-            <footer class="d-flex flex-wrap justify-content-center align-items-center py-1 my-2 border-top">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+            <footer className="d-flex flex-wrap justify-content-center align-items-center py-1 my-2 border-top">
+                <a href="/" className="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
                     <img src={TourNestImage} alt="TourNest" width="60" height="60" />
                 </a>
-                <div class="col-md-4 d-flex align-items-center">
-                    <p class="copyright">© 2021 &nbsp; TourNest, &nbsp; All rights reserved.</p>
+                <div className="col-md-4 d-flex align-items-center">
+                    <p className="copyright">© 2021 &nbsp; TourNest, &nbsp; All rights reserved.</p>
                 </div>
 
-                <div class="icons">
+                <div className="icons">
                     <a href="https://twitter.com/" target="_blank"><FaTwitter /></a>
                     <a href="https://www.facebook.com/" target="_blank"><FaFacebook /></a>
                     <a href="https://www.instagram.com/" target="_blank"><FaInstagram /></a>

@@ -30,12 +30,12 @@ function Login() {
         axios.post("http://localhost:8080/user/login", user).then((result) => {
             if (result.data != null) {
                 showMessage("Login successfully!");
-                history.push("/home"); // Redirect to home page
+                localStorage.setItem("userId", result.data.id);
+                history.push("/home"); 
             }
         })
             .catch(error => {
                 console.error("Axios request failed", error);
-                // You can log the error details or handle it appropriately
             });
     }
 

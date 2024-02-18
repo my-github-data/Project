@@ -2,6 +2,9 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
+import './ChangePass.css';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 function ChangePass() {
     const history = useHistory(); // Initialize useHistory
@@ -39,26 +42,24 @@ function ChangePass() {
 
 
     return (
-        <div className="container">
-            <div className="table-responsive">
-                <table className="table-bordered">
-                    <tbody>
-                        <tr>
-                            <td>Email</td>
-                            <td><input type="email" name="emailId" value={user.emailId} onChange={onTextChange}></input></td>
-                        </tr>
-                        <tr>
-                            <td>Password</td>
-                            <td><input type="password" name="password" value={user.password} onChange={onTextChange}></input></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="submit" onClick={resetPass} value="Reset"></input></td>
-                        </tr>
-                    </tbody>
-                </table>
+        <>
+            <Navbar />
+            <div className="outcontainer2">
+                <div className="container">
+                    <div className="form">
+                        <h3>Reset Password</h3>
+                        <div className="box1">
+                            <input type="email" name="emailId" placeholder="Email" value={user.emailId} onChange={onTextChange}></input>
+                            <input type="password" name="password" placeholder="New Password" value={user.password} onChange={onTextChange}></input>
+                            <div class="box2">
+                                <input type="submit" className='btn' onClick={resetPass} value="Reset"></input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+            <Footer />
+        </>
     );
 }
 
