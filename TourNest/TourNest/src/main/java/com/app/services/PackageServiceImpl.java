@@ -1,6 +1,8 @@
 package com.app.services;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +67,11 @@ public class PackageServiceImpl implements PackageService {
 			return mapper.map(pack, PackageDTO.class);
 		}
 		throw new ResourceNotFoundException("Package Not Found!");
+	}
+
+	@Override
+	public List<PackageDTO> viewAllPackages() {
+		return packRepo.findAll().stream().map(pakage -> mapper.map(pakage, PackageDTO.class))
+				.collect(Collectors.toList());
 	}
 }

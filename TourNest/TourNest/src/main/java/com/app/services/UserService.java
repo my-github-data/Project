@@ -7,9 +7,11 @@ import com.app.dtos.UserDTO;
 
 public interface UserService {
 
-	UserDTO addUser(UserDTO dto);
+//	UserDTO addUser(UserDTO dto);
 
-	UserDTO loginUser(LoginDTO dto);
+	UserDTO registerUser(UserDTO dto);
+
+//	UserDTO loginUser(LoginDTO dto);
 
 	ApiResponse changePassword(LoginDTO dto);
 

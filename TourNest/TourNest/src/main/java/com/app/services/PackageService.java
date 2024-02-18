@@ -1,5 +1,7 @@
 package com.app.services;
 
+import java.util.List;
+
 import com.app.dtos.ApiResponse;
 import com.app.dtos.PackageDTO;
 
@@ -12,4 +14,6 @@ public interface PackageService {
 	ApiResponse deletePackage(Long id);
 
 	PackageDTO viewPackage(Long id);
+
+	List<PackageDTO> viewAllPackages();
 }

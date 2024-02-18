@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,24 +27,28 @@ public class FeedbackController {
 	private FeedbackService feedService;
 
 	@PostMapping("/add")
+	@PreAuthorize("hasRole('CLIENT')")
 	public ResponseEntity<?> addReview(@RequestBody @Valid AddFeedbackDTO dto) {
 		System.out.println(dto.toString());
 		return ResponseEntity.status(HttpStatus.CREATED).body(feedService.addFeedback(dto));
 	}
 
 	@GetMapping("/get/{feedbackId}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> getFeedback(
 			@PathVariable @NotNull(message = "Feedback id Cannot be Null") Long feedbackId) {
 		return ResponseEntity.ok(feedService.getFeedback(feedbackId));
 	}
 
 	@GetMapping("/fetch/{userId}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> getFeedbackByUserId(
 			@PathVariable @NotNull(message = "User id Cannot be Null") Long userId) {
 		return ResponseEntity.ok(feedService.getFeedbackByUserId(userId));
 	}
 
 	@GetMapping("/all")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> getAllFeedbacks() {
 		return ResponseEntity.ok(feedService.getAllFeedbacks());
 	}

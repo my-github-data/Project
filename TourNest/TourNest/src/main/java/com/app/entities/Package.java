@@ -30,7 +30,7 @@ public class Package extends BaseEntity {
 	private Type type;
 	@Column(nullable = false)
 	private Integer price;
-	@Column(length = 150)
+	@Column(length = 500)
 	private String details;
 	@Column(name = "from_date", nullable = false)
 	private LocalDate fromDate;

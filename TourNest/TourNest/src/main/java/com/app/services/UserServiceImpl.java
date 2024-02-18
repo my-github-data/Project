@@ -2,6 +2,7 @@ package com.app.services;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,20 +25,31 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private ModelMapper mapper;
 
+	@Autowired
+	private PasswordEncoder encoder;
+
 	@Override
-	public UserDTO addUser(UserDTO dto) {
+	public UserDTO registerUser(UserDTO dto) {
 		User user = mapper.map(dto, User.class);
 		user.setRole(Role.ROLE_CLIENT);
+		user.setPassword(encoder.encode(user.getPassword()));
 		return mapper.map(userRepo.save(user), UserDTO.class);
 	}
 
-	@Override
-	public UserDTO loginUser(LoginDTO dto) {
-		User user = userRepo.findByEmailIdAndPassword(dto.getEmailId(), dto.getPassword());
-		if (user != null)
-			return mapper.map(user, UserDTO.class);
-		throw new ResourceNotFoundException("Invalid Email Or Password");
-	}
+//	@Override
+//	public UserDTO addUser(UserDTO dto) {
+//		User user = mapper.map(dto, User.class);
+//		user.setRole(Role.ROLE_CLIENT);
+//		return mapper.map(userRepo.save(user), UserDTO.class);
+//	}
+
+//	@Override
+//	public UserDTO loginUser(LoginDTO dto) {
+//		User user = userRepo.findByEmailIdAndPassword(dto.getEmailId(), dto.getPassword());
+//		if (user != null)
+//			return mapper.map(user, UserDTO.class);
+//		throw new ResourceNotFoundException("Invalid Email Or Password");
+//	}
 
 	@Override
 	public ApiResponse changePassword(LoginDTO dto) {
@@ -63,6 +75,6 @@ public class UserServiceImpl implements UserService {
 				return mapper.map(userRepo.save(existingUser), UserDTO.class);
 			}
 		}
-		return null;
+		throw new ResourceNotFoundException("Invalid Email Or Password");
 	}
 }

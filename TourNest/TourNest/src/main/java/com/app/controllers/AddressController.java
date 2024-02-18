@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,16 +28,19 @@ public class AddressController {
 	private AddressService addressService;
 
 	@PostMapping("/add/{userId}")
+	@PreAuthorize("hasRole('CLIENT')")
 	public ResponseEntity<?> addAddress(@PathVariable @NotNull Long userId, @RequestBody @Valid AddressDTO dto) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(addressService.addAddress(userId, dto));
 	}
 
 	@PutMapping("/update/{id}")
+	@PreAuthorize("hasRole('CLIENT')")
 	public ResponseEntity<?> updateAddress(@PathVariable @NotNull Long id, @RequestBody @Valid AddressDTO dto) {
 		return ResponseEntity.ok(addressService.updateAddress(id, dto));
 	}
 
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAnyRole('CLIENT', 'ADMIN')")
 	public ResponseEntity<?> getAddress(@PathVariable @NotNull Long id) {
 		return ResponseEntity.ok(addressService.getAddress(id));
 	}
