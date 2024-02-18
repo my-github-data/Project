@@ -15,10 +15,10 @@ function Navbar() {
                             <a className="nav-link active" aria-current="page" href="/home">Home</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">About Us</a>
+                            <a className="nav-link" href="/aboutus">About Us</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Enquiry</a>
+                            <a className="nav-link" href="/enquiry">Enquiry</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/packages">Packages</a>

@@ -18,7 +18,7 @@ function HomeBody() {
             <div className="row row-cols-1 row-cols-md-3 g-4">
                 <div className="col">
                     <Link to={`/packagedata/${6}`} className="card-link">
-                        <div className="card">
+                        <div className="card card1">
                             <img src={gateway} className="card-img-top" alt="MumbaiGateway" />
                             <div className="card-body">
                                 <h5 className="card-title">Mumbai Weekend Gateway</h5>
@@ -30,7 +30,7 @@ function HomeBody() {
                 </div>
                 <div className="col">
                     <Link to={`/packagedata/${7}`} className="card-link">
-                        <div className="card">
+                        <div className="card card1">
                             <img src={punetrek} className="card-img-top" alt="PuneTrek" />
                             <div className="card-body">
                                 <h5 className="card-title">Sahyadri Treks Pune</h5>
@@ -40,7 +40,7 @@ function HomeBody() {
                     </Link>
                 </div>
                 <div className="col">
-                    <div className="card">
+                    <div className="card card1">
                         <img src={backpack} className="card-img-top" alt="BackPack" />
                         <div className="card-body">
                             <h5 className="card-title">Backpacking Trips</h5>
@@ -54,7 +54,7 @@ function HomeBody() {
             <div className="row row-cols-1 row-cols-md-3 g-4">
                 <div className="col">
                     <Link to={`/packagedata/${11}`} className="card-link">
-                        <div className="card">
+                        <div className="card card1">
                             <img src={meghalaya} className="card-img-top" alt="MeghalayaTrip" />
                             <div className="card-body">
                                 <h5 className="card-title">Meghalaya Trips</h5>
@@ -65,7 +65,7 @@ function HomeBody() {
                 </div>
                 <div className="col">
                     <Link to={`/packagedata/${12}`} className="card-link">
-                        <div className="card">
+                        <div className="card card1">
                             <img src={south} className="card-img-top" alt="SouthTrip" />
                             <div className="card-body">
                                 <h5 className="card-title">South Trips</h5>
@@ -76,7 +76,7 @@ function HomeBody() {
                 </div>
                 <div className="col">
                     <Link to={`/packagedata/${13}`} className="card-link">
-                        <div className="card">
+                        <div className="card card1">
                             <img src={himalaya} className="card-img-top" alt="HimalayaTrek" />
                             <div className="card-body">
                                 <h5 className="card-title">Himalaya Treks</h5>
@@ -91,7 +91,7 @@ function HomeBody() {
             <div className="row row-cols-1 row-cols-md-3 g-4">
                 <div className="col">
                     <Link to={`/packagedata/${16}`} className="card-link">
-                        <div className="card">
+                        <div className="card card1">
                             <img src={hogwarts} className="card-img-top" alt="HogwartsTrip" />
                             <div className="card-body">
                                 <h5 className="card-title">Magical Trip to Hogwarts</h5>
@@ -102,7 +102,7 @@ function HomeBody() {
                 </div>
                 <div className="col">
                     <Link to={`/packagedata/${17}`} className="card-link">
-                        <div className="card">
+                        <div className="card card1">
                             <img src={disney} className="card-img-top" alt="Disneyland" />
                             <div className="card-body">
                                 <h5 className="card-title">Visit to Disneyland</h5>
@@ -113,7 +113,7 @@ function HomeBody() {
                 </div>
                 <div className="col">
                     <Link to={`/packagedata/${18}`} className="card-link">
-                        <div className="card">
+                        <div className="card card1">
                             <img src={maldives} className="card-img-top" alt="Maldives" />
                             <div className="card-body">
                                 <h5 className="card-title">Maldives</h5>

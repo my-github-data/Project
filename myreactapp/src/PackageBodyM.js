@@ -46,7 +46,9 @@ function PackageBodyM() {
                   <h5 className="card-title">{packageData.name}</h5>
                   <p className="card-text">Details: {packageData.details}</p>
                   <div className="card-body">
-                    <Link to={`/packagedata/${index + 6}`} className="card-link">View More....</Link>
+                    <Link to={`/packagedata/${index + 6}`} className="card-link vmr">View More....</Link>
+                    <br />
+                    <Link to="/review/:packageId" className="card-link vmr">Review</Link>
                   </div>
                 </>
               )}

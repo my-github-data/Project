@@ -9,6 +9,10 @@ import PackageN from './PackageN';
 import PackageI from './PackageI';
 import Package from './Package';
 import PackageData from './PackageData';
+import Enquiry from './Enquiry';
+import AboutUs from './AboutUs';
+import Feedback from './Feedback';
+import Review from './Review';
 
 function App() {
   return (
@@ -16,6 +20,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/home" component={Home} />
+        <Route exact path="/enquiry" component={Enquiry} />
+        <Route exact path="/aboutus" component={AboutUs} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/changepass" component={ChangePass} />
@@ -24,6 +30,8 @@ function App() {
         <Route exact path="/packagesn" component={PackageN} />
         <Route exact path="/packagesi" component={PackageI} />
         <Route path="/packagedata/:id" component={PackageData} />
+        <Route path="/review/:packageId" component={Review} />
+        <Route path="/feedback" component={Feedback} />
         <Redirect to="/" />
       </Switch>
     </div>
