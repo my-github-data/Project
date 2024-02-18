@@ -3,6 +3,8 @@ import { Link, useHistory } from "react-router-dom"; // Import useHistory
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 import "./Login.css"
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 function Login() {
     const history = useHistory(); // Initialize useHistory
@@ -26,11 +28,11 @@ function Login() {
     const handleLogin = () => {
         //debugger;
         axios.post("http://localhost:8080/user/login", user).then((result) => {
-                if (result.data!=null) {
-                    showMessage("Login successfully!");
-                    history.push("/home"); // Redirect to home page
-                }
-            })
+            if (result.data != null) {
+                showMessage("Login successfully!");
+                history.push("/home"); // Redirect to home page
+            }
+        })
             .catch(error => {
                 console.error("Axios request failed", error);
                 // You can log the error details or handle it appropriately
@@ -40,30 +42,27 @@ function Login() {
 
 
     return (
-        <div className="container">
-            <div className="table-responsive">
-                <table className="table-bordered">
-                    <tbody>
-                        <tr>
-                            <td>Email</td>
-                            <td><input type="email" name="emailId" value={user.emailId} onChange={onTextChange}></input></td>
-                        </tr>
-                        <tr>
-                            <td>Password</td>
-                            <td><input type="password" name="password" value={user.password} onChange={onTextChange}></input></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><Link to="/changepass">Change Password</Link></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="submit" onClick={handleLogin}></input></td>
-                        </tr>
-                    </tbody>
-                </table>
+        <>
+            <Navbar />
+            <div className="outcontainer">
+                <div className="container">
+                    <div className="form">
+                        <h2>Login</h2>
+                        <div className="box1">
+                            <input type="email" name="emailId" placeholder="Email" value={user.emailId} onChange={onTextChange}></input>
+
+                            <input type="password" name="password" placeholder="Password" value={user.password} onChange={onTextChange}></input>
+                        </div>
+                            <h6><Link to="/changepass">Change Password</Link></h6>
+                        <div className="box2">
+
+                            <button className="btn" type="submit" onClick={handleLogin}>Login</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+            <Footer />
+        </>
     );
 }
 

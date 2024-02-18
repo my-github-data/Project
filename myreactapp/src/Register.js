@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import './Register.css';
 
 
 function Register() {
     const history = useHistory();
-    const [user, setUser] = useState({ name: "", emailId: "", phoneNo: "", password: "" })
-    const [message, setMessage]=useState("");
+    const [user, setUser] = useState({ firstName: "", lastName: "", emailId: "", phoneNo: "", password: "" })
+    const [message, setMessage] = useState("");
     const url = "http://localhost:8080/user/register";
 
     const OnTextChange = (args) => {
@@ -15,11 +16,11 @@ function Register() {
         user1[args.target.name] = args.target.value;
         setUser(user1);
     }
-    const showMessage=(msgText)=>{
+    const showMessage = (msgText) => {
         setMessage(msgText);
-        window.setTimeout(()=>{
+        window.setTimeout(() => {
             setMessage("");
-        },3000);
+        }, 3000);
     }
     const AddUser = () => {
         axios.post(url, user)
@@ -33,7 +34,7 @@ function Register() {
             .catch((error) => {
                 console.error('Error adding user:', error);
                 if (error.response) {
-                    
+
                     console.error('Response data:', error.response.data);
                     console.error('Response status:', error.response.status);
                     console.error('Response headers:', error.response.headers);
@@ -45,50 +46,37 @@ function Register() {
                 showMessage("Error registering user. Please try again.");
             });
     };
-    
+
 
     // const ClearBoxes = ()=>{
     //     setUser({ name: "", emailId: "", phoneNo: "", password: "" });
     // }
 
-    return (<div className="container">
-        <div className="table-responsive">
-            <table className="table table-bordered">
-                <tbody>
-                    <tr>
-                        <td>UserName</td>
-                        <td>
-                            <input name="name" value={user.name} onChange={OnTextChange} />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>EmailId</td>
-                        <td>
-                            <input name="emailId" value={user.emailId} onChange={OnTextChange} />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Phone</td>
-                        <td>
-                            <input name="phoneNo" value={user.phoneNo} onChange={OnTextChange} />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Password</td>
-                        <td>
-                            <input name="password" value={user.password} onChange={OnTextChange} />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <button className="btn btn-success" onClick={AddUser}>Add User</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>)
+    return (
+        <>
+            <div className="outcontainer1">
+                <div className="container1">
+                    <div className="form">
+                        <h1>Register</h1>
+                        <div className="box1">
+                            <input name="firstName" placeholder="First Name" value={user.firstName} onChange={OnTextChange} />
+
+                            <input name="lastName" placeholder="Last Name" value={user.lastName} onChange={OnTextChange} />
+
+                            <input name="emailId" placeholder="Email" value={user.emailId} onChange={OnTextChange} />
+
+                            <input name="phoneNo" placeholder="Phone" value={user.phoneNo} onChange={OnTextChange} />
+
+                            <input name="password" placeholder="Password" value={user.password} onChange={OnTextChange} />
+                            <div class="box2">
+                                <button className="btn" onClick={AddUser}>Add User</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
 }
 
 export default Register;
