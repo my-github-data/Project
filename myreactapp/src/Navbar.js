@@ -4,24 +4,24 @@ import './Navbar.css';
 
 function Navbar() {
     return (
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src={TourNestImage} alt="TourNest" width="85" height="85" />
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <div className="container-fluid">
+                <a className="navbar-brand" href="/home">
+                    <img src={TourNestImage} alt="TourNest" width="80" height="80" />
                 </a>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <a className="nav-link active" aria-current="page" href="/home">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About Us</a>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#">About Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Enquiry</a>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#">Enquiry</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link">Packages</a>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/packages">Packages</a>
                         </li>
                     </ul>
                 </div>
