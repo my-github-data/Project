@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Fruktur&family=Lora:ital,wght@1,400;1,500&family=Playfair+Display:ital,wght@1,600;1,800;1,900&family=Quintessential&family=Source+Serif+4:ital@1&display=swap');
+
+.contact_container {
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 30px; 
+}
+
+.g_map {
+    height: 700px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.g_map iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.contact_container h2 {
+    font-size: 32px;
+    text-shadow: -1px -1px rgb(28, 28, 29);
+    font-family: "Merriweather", serif;
+    font-weight: 400;
+    font-style: italic;
+}
+.contact_icons{
+    margin: 20px;
+}
+.contact_icons a {
+    font-size: 30px;
+    color: rgb(5, 42, 116);
+    margin-left: 20px;
+}
+
+.contact_icons a:hover {
+    color: rgb(49, 118, 255);
+    transition: all 0.2s ease;
+    text-shadow: 2px 2px 4px rgb(5, 42, 116);
+}
+.contact_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Merriweather", serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 18px;
+}

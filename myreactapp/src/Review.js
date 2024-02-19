@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import './Review.css';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import "./PackageData.css"
+import { FaSmileBeam } from 'react-icons/fa';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-function PackageData() {
-    const { id } = useParams();
+function Review() {
+    const { packageId } = useParams(); // Get the packageId from the URL params
     const [packageData, setPackageData] = useState(null);
+    const [review, setReview] = useState({ review: '', rating: '' });
+    const [message, setMessage] = useState('');
     const [showModal, setShowModal] = useState(false);
-    const [booking, setBooking] = useState({ noOfTickets: "" })
-    const [message, setMessage] = useState("");
-    const url = "http://localhost:8080/booking/add";
+    const url = 'http://localhost:8080/review/add';
 
     const getUserIdFromStorage = () => {
         const userId = localStorage.getItem('userId');
@@ -21,34 +22,33 @@ function PackageData() {
     useEffect(() => {
         async function fetchPackageDetails() {
             try {
-                const response = await axios.get(`http://localhost:8080/package/viewPackage/${id}`);
+                const response = await axios.get(`http://localhost:8080/package/viewPackage/${packageId}`);
                 setPackageData(response.data);
             } catch (error) {
                 console.error('Error fetching package details:', error);
             }
         }
         fetchPackageDetails();
-    }, [id]);
-
-    const openModal = () => setShowModal(true);
-    const closeModal = () => setShowModal(false);
+    }, [packageId]); // Fetch package details whenever packageId changes
 
     if (!packageData) {
         return <div>Loading...</div>;
     }
 
     const OnTextChange = (args) => {
-        var booking1 = { ...booking }
-        booking1[args.target.name] = args.target.value;
-        setBooking(booking1);
-    }
+        const review1 = { ...review };
+        review1[args.target.name] = args.target.value;
+        setReview(review1);
+    };
+
     const showMessage = (msgText) => {
         setMessage(msgText);
         window.setTimeout(() => {
-            setMessage("");
+            setMessage('');
         }, 3000);
-    }
-    const BookPackage = () => {
+    };
+
+    const GiveReview = () => {
         const userId = getUserIdFromStorage();
 
         // Check if user ID is available
@@ -57,29 +57,30 @@ function PackageData() {
             return;
         }
 
-        // Check if number of tickets is entered
-        if (!booking.noOfTickets) {
-            alert("Please enter the number of tickets.");
+        // Check if feedback is entered
+        if (!review.review) {
+            alert('Please give the review');
             return;
         }
 
-        const bookingData = {
-            ...booking,
+        const reviewData = {
+            ...review,
             userId: userId, // Include user ID
-            packageId: id    // Include package ID from params
+            packageId: packageId, // Include packageId
         };
 
-        // Send a POST request to book the package
-        axios.post(url, bookingData)
+        // Send a POST request to submit the review
+        axios
+            .post(url, reviewData)
             .then((result) => {
                 if (result.data != null) {
                     console.log(result);
-                    showMessage("Booked Successfully!!");
-                    closeModal();
+                    setShowModal(true); // Show modal after successful submission
+                    setReview({ review: '' }); // Clear the review input
                 }
             })
             .catch((error) => {
-                console.error('Error while booking:', error);
+                console.error('Error while giving review:', error);
                 if (error.response) {
                     console.error('Response data:', error.response.data);
                     console.error('Response status:', error.response.status);
@@ -89,57 +90,61 @@ function PackageData() {
                 } else {
                     console.error('Error setting up the request:', error.message);
                 }
-                showMessage("Error while booking. Please try again.");
+                showMessage('Error while giving review. Please try again.');
             });
     };
+
     return (
         <>
             <Navbar />
-            <div className="containerde">
+            <div className="containerre">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-4">
-                        <div className="card pack">
+                        <div className="card review">
                             <div className="card-body text-center">
                                 <br />
-                                <h2>{packageData.name}</h2>
+                                <h2>Review</h2>
                                 <br />
-                                <p>Price: {packageData.price}</p>
-                                <p>From Date: {packageData.fromDate}</p>
-                                <p>To Date: {packageData.toDate}</p>
-                                <p>Type: {packageData.type}</p>
-                                <button type="button" className="btn btn-outline-secondary" onClick={openModal}>
-                                    Book Now
+                                <br />
+                                <br />
+                                <br />
+                                <input placeholder="Share your review on this package" name="review" value={review.review} onChange={OnTextChange} />
+                                <input placeholder="Rating" name="rating" value={review.rating} onChange={OnTextChange} />
+                                <br />
+                                <br />
+                                <button type="button" className="btn btn-outline-secondary" onClick={GiveReview}>
+                                    Submit
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <Footer />
 
             {showModal && (
                 <div className="modal fade show" tabIndex="-1" role="dialog" style={{ display: 'block' }}>
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title">Booking Details</h5>
-                                <button type="button" className="close" onClick={closeModal}>
+                                <h5 className="modal-title">Review Submitted</h5>
+                                <button type="button" className="close" onClick={() => setShowModal(false)}>
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div className="modal-body">
-                                <input name="noOfTickets" placeholder="No. Of Tickets" value={booking.noOfTickets} onChange={OnTextChange} />
+                                <p>Thank you for your Review!&nbsp;<FaSmileBeam /></p>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" onClick={closeModal}>Cancel</button>
-                                <button type="button" className="btn btn-primary" onClick={BookPackage}>Book</button>
+                                <button type="button" className="btn btn-primary" onClick={() => setShowModal(false)}>
+                                    Close
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             )}
-            <Footer />
         </>
     );
 }
-
-export default PackageData;
+export default Review;
